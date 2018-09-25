@@ -36,12 +36,15 @@ WARNING!!! WARNING!!!
 // (Note, Step 2 will be done in the SpeakHello.js file.)
 
 var names = ["Yaakov", "John", "Jen", "Jason", "Paul", "Frank", "Larry", "Paula", "Laura", "Jim"];
+var separator = "---------------";
 
 // STEP 10:
 // Loop over the names array and say either 'Hello' or "Good Bye"
 // using the 'speak' method or either helloSpeaker's or byeSpeaker's
 // 'speak' method.
 // See Lecture 50, part 1
+
+console.log(separator);
 for (let name of names) {
 
   // STEP 11:
@@ -65,4 +68,23 @@ for (let name of names) {
     helloSpeaker.speak(name);
   }
 }
+console.log(separator);
+
+var greetingAndNames = names.map(x => helloGoodbye(x));
+
+for (let greetingAndName of greetingAndNames) {
+  console.log(greetingAndName);
+}
+
+console.log(separator);
+
 })();
+
+function helloGoodbye(str){
+
+  if (str.charAt(0).toLowerCase()==="j") {
+    return byeSpeaker.speakSimple(str);
+} else {
+    return helloSpeaker.speakSimple(str);
+}
+}
