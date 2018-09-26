@@ -78,6 +78,26 @@ for (let greetingAndName of greetingAndNames) {
 
 console.log(separator);
 
+const helloGoodbyeCollection = greetingAndNames.reduce((greetingArray, greeting) =>
+  {
+    greetingArray[greeting.charAt(0).toLowerCase() == "h" ? "hello" : "bye"].push(greeting);
+    return greetingArray;
+  }, 
+    {hello: [], bye: []}
+  );
+
+for (let helloMessage of helloGoodbyeCollection["hello"]) 
+{
+  console.log(helloMessage);
+}
+
+for (let byeMessage of helloGoodbyeCollection["bye"]) 
+{
+  console.log(byeMessage);
+}
+
+console.log(separator);
+
 })();
 
 function helloGoodbye(str){
