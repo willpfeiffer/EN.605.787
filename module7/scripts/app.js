@@ -4,22 +4,24 @@
 angular.module('ShoppingListCheckOff', [])
 .controller('ToBuyController', ToBuyController)
 .controller('AlreadyBoughtController', AlreadyBoughtController)
-.service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+.service('ShoppingListCheckOffService', ShoppingListCheckOffService)
+.filter('AngularDollarsFilter', AngularDollarsFilter);
 
 ToBuyController.$inject = ['ShoppingListCheckOffService'];
 function ToBuyController(ShoppingListCheckOffService) {
     var toBuy = this;
   
     toBuy.Name = "";
+    toBuy.Price = "";
     toBuy.Quantity = "";
     toBuy.Items = ShoppingListCheckOffService.getCart();
   
     toBuy.addToCart = function () {
-        ShoppingListCheckOffService.addToCart(toBuy.Name, toBuy.Quantity);
+        ShoppingListCheckOffService.addToCart(toBuy.Name, toBuy.Price, toBuy.Quantity);
     }
 
-    toBuy.purchaseItem = function (name, quantity) {
-        ShoppingListCheckOffService.addToPurchased(name, quantity);
+    toBuy.purchaseItem = function (name, price, quantity) {
+        ShoppingListCheckOffService.addToPurchased(name, price, quantity);
     }
   }
 
@@ -30,8 +32,13 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
     var alreadyBought = this;
   
     alreadyBought.Name = "";
+    alreadyBought.Price = "";
     alreadyBought.Quantity = "";
     alreadyBought.Items = ShoppingListCheckOffService.getPurchased();
+
+    alreadyBought.getTotalPrice = function (item) {
+        return ShoppingListCheckOffService.getTotalPrice(item);
+    }
   }
 
 function ShoppingListCheckOffService() {
@@ -43,17 +50,17 @@ function ShoppingListCheckOffService() {
     service.buildInitialCart = function(){
         for (var i = 0; i < 5; i++){
             var itemNumber = i + 1;
-            service.addItem('Item'+ itemNumber, itemNumber, initialCartItems);
+            service.addItem('Item'+ itemNumber, itemNumber, itemNumber, initialCartItems);
         }
     };
 
-    service.addToCart = function(name, quantity){
-        service.addItem(name, quantity, cartItems);
+    service.addToCart = function(name, price, quantity){
+        service.addItem(name, price, quantity, cartItems);
     };
 
-    service.addToPurchased = function(name, quantity){
+    service.addToPurchased = function(name, price, quantity){
         service.removeItem(name, cartItems);
-        service.addItem(name, quantity, purchasedItems);
+        service.addItem(name, price, quantity, purchasedItems);
     };
 
     service.removeItemByIndex = function (index, items) {
@@ -65,9 +72,10 @@ function ShoppingListCheckOffService() {
         if (index !== -1) items.splice(index, 1);
     };
 
-    service.addItem = function (name, quantity, items) {
+    service.addItem = function (name,  price, quantity, items) {
       var item = {
         Name: name,
+        Price: price,
         Quantity: quantity
       };
       items.push(item);
@@ -84,6 +92,16 @@ function ShoppingListCheckOffService() {
     service.getPurchased = function () {
         return purchasedItems;
       };
-  }
 
+      service.getTotalPrice = function (item) {
+        var totalPrice = 0;
+        totalPrice = item.Price * item.Quantity;
+        return totalPrice;
+      };
+  }
+  function AngularDollarsFilter(){
+    return function(input){
+        return '$$$' + input;
+    }
+  };
 })();

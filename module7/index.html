@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Shopping List Check Off</title>
+    <title>Assignment 7</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/app.js"></script>
@@ -35,8 +35,8 @@
      <h2>Available Items:</h2>
      <ul>
       <li ng-repeat="item in toBuy.Items">
-        {{ item.Quantity }} of {{ item.Name }}
-        <button ng-click="toBuy.purchaseItem(item.Name, item.Quantity);">Buy</button>
+        {{ item.Name }} - {{ item.Price | AngularDollarsFilter }} - Quantity {{ item.Quantity }} 
+        <button ng-click="toBuy.purchaseItem(item.Name, item.Price, item.Quantity);">Buy</button>
       </li>
      </ul>
      <div ng-if="toBuy.Items.length === 0" class="emptyMessage">Everything is bought!</div>
@@ -47,7 +47,7 @@
      <h2>Purchased Items:</h2>
      <ul>
       <li ng-repeat="item in alreadyBought.Items">
-        {{ item.Quantity }} of {{ item.Name }}
+        {{ item.Quantity }} of {{ item.Name }} - Total Price {{alreadyBought.getTotalPrice(item) | AngularDollarsFilter}}
       </li>
      </ul>
      <div ng-if="alreadyBought.Items.length === 0" class="emptyMessage">Nothing bought yet.</div>
