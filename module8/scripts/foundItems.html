@@ -1,0 +1,7 @@
+<h3>Test: {{ list.title }}</h3>
+<ol>
+  <li ng-repeat="item in list.found">
+    {{ item.name }} ${{ item.price_small }}
+    <button ng-click="list.onRemove({index: $index});">Remove</button>
+  </li>
+</ol>

@@ -1,0 +1,7 @@
+<h3>Title: {{ narrowIt.myTitle }} ({{narrowIt.found.length}})</h3>
+<ol>
+  <li ng-repeat="item in narrowIt.found">
+    {{ item.name }}
+    <button ng-click="narrowIt.onRemove({index: $index});">Remove</button>
+  </li>
+</ol>
