@@ -35,7 +35,7 @@ function MenuDataService($http, ApiBasePath) {
   
       return response.then(function (result) {
         // process result and only keep items that match
-        var itemsList = result.data;
+        var itemsList = result.data.menu_items;
 
         // return processed items
         return itemsList;
