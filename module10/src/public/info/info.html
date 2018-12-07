@@ -1,0 +1,29 @@
+<div ng-app="public" class="menu-item-tile col-md-6">
+  <div ng-controller="InfoController as info" class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-sm-8">
+        <span ng-if="info.user !== undefined">
+            <ul>
+                <li>
+                  Name: {{info.user.firstname}}  {{info.user.lastname}}
+                </li>
+                <li>
+                    Email: {{info.user.email}}
+                </li>
+                <li>
+                    Phone: {{info.user.phone}}
+                </li>
+                <li>
+                    Favorite Dish: {{info.user.favdish}}
+                </li>
+              </ul>
+        </span>
+        <span ng-if="info.user === undefined">
+            Not Signed Up Yet. <br/>
+            <a ui-sref="public.signup">Sign up Now!.</a>
+        </span>
+    </div>
+  </div>
+  <hr class="visible-xs">
+</div>

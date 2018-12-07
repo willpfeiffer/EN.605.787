@@ -1,0 +1,67 @@
+
+<head>
+  <style>
+    input, textarea{
+    color:black;
+    }
+  </style>
+</head>
+<div ng-app="public" class="menu-item-tile col-md-6">
+  <div class="row" ng-controller="RegistrationController as reg">
+    <div class="col-md-1">
+    </div>
+    <div class="col-sm-8">
+    <br/>
+		<form name="regForm" novalidate>
+       <div class="input-group">
+        <label for="inputfname">First Name</label><br/>
+        <input type="text" name="firstname" id="inputfname" placeholder="First Name"
+         ng-model="reg.user.firstname" required />
+         <span ng-if="regForm.firstname.$invalid && regForm.firstname.$touched">
+            First Name Required
+        </span>
+       </div><br/>
+
+       <div class="input-group">
+       <label for="inputlname">Last Name</label><br/>
+       <input type="text" name="lastname" id="inputlname" placeholder="Last Name"
+        ng-model="reg.user.lastname" required />
+        <span ng-if="regForm.lastname.$invalid && regForm.lastname.$touched">
+            Last Name Required
+        </span>
+      </div><br/>
+       
+       <div class="input-group">
+       <label for="inputemail">Email</label><br/>
+       <input type="email" id="inputemail" name="email" ng-model="reg.user.email" placeholder="Email" required />
+       <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+          Must be a valid email address: handle@domain format
+       </span>
+       </div><br/>
+      
+      <div class="input-group"> 
+      <label for="inputnumber">Phone</label><br/>
+      <input type="text" id="inputnumber" name="phone" placeholder="Phone ###-###-####"  
+        pattern="(\d{3})-(\d{3})-(\d{4})" ng-model="reg.user.phone" required />
+        <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+        </span>
+      </div><br/>
+      
+      <div class="input-group">   
+      <label for="inputdish">Favorite Dish</label><br/>
+      <input type="number" id="inputdish" name="favdish" placeholder="Favorite Dish" ng-model="reg.user.favdish" required />
+      <span ng-if="regForm.favdish.$invalid && regForm.favdish.$touched">
+          No such menu number exists
+      </span>
+      </div><br/><br/>
+
+			<input class="btn btn-primary" type="submit" ng-disabled="regForm.$invalid" ng-click="reg.submit()" value="Submit" /><br/><br/>
+      <span ng-if="reg.completed">
+          Your information has been saved
+      </span>
+    </form>
+    </div>
+  </div>
+  <hr class="visible-xs">
+</div>
