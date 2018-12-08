@@ -10,6 +10,7 @@ function RegistrationController(UserService) {
 
   reg.submit = function () {
     UserService.setUser(reg.user);
+    UserService.setFavDishInfo(reg.user.favdish);
     reg.completed = true;
   };
 }

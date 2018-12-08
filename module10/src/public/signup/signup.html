@@ -10,7 +10,7 @@
   <div class="row" ng-controller="RegistrationController as reg">
     <div class="col-md-1">
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-10">
     <br/>
 		<form name="regForm" novalidate>
        <div class="input-group">
@@ -50,8 +50,9 @@
       
       <div class="input-group">   
       <label for="inputdish">Favorite Dish</label><br/>
-      <input type="number" id="inputdish" name="favdish" placeholder="Favorite Dish" ng-model="reg.user.favdish" required />
-      <span ng-if="regForm.favdish.$invalid && regForm.favdish.$touched">
+      <input type="text" id="inputdish" name="favdish" placeholder="Favorite Dish" 
+      ng-model="reg.user.favdish" ng-model-options="{ allowInvalid: true, updateOn: 'blur' }" required menu-data-directive />
+      <span ng-if='regForm.favdish.$invalid && regForm.favdish.$touched'>
           No such menu number exists
       </span>
       </div><br/><br/>
