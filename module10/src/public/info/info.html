@@ -3,8 +3,9 @@
     <div class="col-md-1">
     </div>
     <div class="col-sm-8">
+        <br/><br/>
         <span ng-if="info.user !== undefined">
-		    <br/><br/>
+		    
             <ul>
                 <li>
                   Name: {{info.user.firstname}}  {{info.user.lastname}}
@@ -20,7 +21,6 @@
             <img ng-src="https://wpfeiffer-course5.herokuapp.com/images/{{info.user.favdish}}.jpg" alt={{info.user.favdishInfo.name}} /><br/><br/>
             Title: {{info.user.favdishInfo.name}} <br/> 
             Description: {{info.user.favdishInfo.description}} <br/> 
-
         </span>
         <span ng-if="info.user === undefined">
             Not Signed Up Yet. <br/>
