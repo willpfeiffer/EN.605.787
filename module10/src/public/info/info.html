@@ -4,6 +4,7 @@
     </div>
     <div class="col-sm-8">
         <span ng-if="info.user !== undefined">
+		    <br/><br/>
             <ul>
                 <li>
                   Name: {{info.user.firstname}}  {{info.user.lastname}}
@@ -15,8 +16,8 @@
                     Phone: {{info.user.phone}}
                 </li>
             </ul><br/>
-            Favorite Dish: <br/> 
-            <img ng-src="https://wpfeiffer-course5.herokuapp.com/images/{{info.user.favdish}}.jpg" alt={{info.user.favdishInfo.name}} /><br/>
+            Favorite Dish: <br/><br/>
+            <img ng-src="https://wpfeiffer-course5.herokuapp.com/images/{{info.user.favdish}}.jpg" alt={{info.user.favdishInfo.name}} /><br/><br/>
             Title: {{info.user.favdishInfo.name}} <br/> 
             Description: {{info.user.favdishInfo.description}} <br/> 
 
