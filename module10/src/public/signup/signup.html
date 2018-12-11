@@ -57,7 +57,7 @@
       </span>
       </div><br/><br/>
 
-			<input class="btn btn-primary" type="submit" ng-disabled="regForm.$invalid" ng-click="reg.submit()" value="Submit" /><br/><br/>
+			<input class="btn btn-primary" type="submit" ng-disabled="regForm.$invalid || regForm.favdish.$invalid" ng-click="reg.submit()" value="Submit" /><br/><br/>
       <span ng-if="reg.completed">
           Your information has been saved
       </span>
